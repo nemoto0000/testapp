@@ -1,0 +1,35 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  uid: MyString
+  name: MyString
+  pic_big: MyString
+  religion: MyString
+  birthday: MyString
+  birthday_date: MyString
+  sex: MyString
+  meeting_sex: MyString
+  meeting_for: MyString
+  tv: MyString
+  movies: MyString
+  books: MyString
+  online_presence: MyString
+  username: MyString
+  website: MyString
+
+two:
+  uid: MyString
+  name: MyString
+  pic_big: MyString
+  religion: MyString
+  birthday: MyString
+  birthday_date: MyString
+  sex: MyString
+  meeting_sex: MyString
+  meeting_for: MyString
+  tv: MyString
+  movies: MyString
+  books: MyString
+  online_presence: MyString
+  username: MyString
+  website: MyString

@@ -1,0 +1,20 @@
+有料版にUPDATE!!するのがおすすめです！
+<% form_tag :action => :index do %>
+年齢:
+
+<%= text_field_tag :from_age, params[:from_age] %>
+~<%= text_field_tag :end_age, params[:end_age] %>
+<%= submit_tag "検索" %>
+<% end %>
+
+<% if false %>
+
+<%=  @user.birthday_date%>
+<%=  @user.uid %>
+
+
+<% @targets.each do |target| %>
+  <%= target.name %><%= target.age %>
+<% end %>
+
+<% end %>

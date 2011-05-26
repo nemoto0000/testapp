@@ -1,0 +1,77 @@
+<%= form_for(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :uid %><br />
+    <%= f.text_field :uid %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :pic_big %><br />
+    <%= f.text_field :pic_big %>
+  </div>
+  <div class="field">
+    <%= f.label :religion %><br />
+    <%= f.text_field :religion %>
+  </div>
+  <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.text_field :birthday %>
+  </div>
+  <div class="field">
+    <%= f.label :birthday_date %><br />
+    <%= f.text_field :birthday_date %>
+  </div>
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.text_field :sex %>
+  </div>
+  <div class="field">
+    <%= f.label :meeting_sex %><br />
+    <%= f.text_field :meeting_sex %>
+  </div>
+  <div class="field">
+    <%= f.label :meeting_for %><br />
+    <%= f.text_field :meeting_for %>
+  </div>
+  <div class="field">
+    <%= f.label :tv %><br />
+    <%= f.text_field :tv %>
+  </div>
+  <div class="field">
+    <%= f.label :movies %><br />
+    <%= f.text_field :movies %>
+  </div>
+  <div class="field">
+    <%= f.label :books %><br />
+    <%= f.text_field :books %>
+  </div>
+  <div class="field">
+    <%= f.label :online_presence %><br />
+    <%= f.text_field :online_presence %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

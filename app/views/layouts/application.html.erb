@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>マッチ〜ず！(仮)</title>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<table>
+<tr>
+  <td><h1>マッチ〜ず!(仮)</h1></td>
+  <td>ようこそ！<%= @user.name %>さん (<%= get_gender(@user.sex) %>, <%= @user.age.to_s||='年齢不詳' %>) <%=image_tag @user.pic_big||='', :size=>'70x70' %></td>
+</tr>
+</table>
+<br />
+<font size="5">|
+<%=link_to "リアルタイム検索", :action => :index %>|
+<%=link_to "最近アクセス検索", :action => :index %>|
+<%=link_to "最近アクセス検索", :action => :index %>|
+<%=link_to "有料版UPDATE!!", :action => :index %>|
+</font>
+<hr />
+<%= yield %>
+ここ参照につくる
+http://d.hatena.ne.jp/koyonote/20110425/1303742789
+
+
+<hr />
+(C)Solad advanced solution | <a href="http://solad.co.jp">会社概要</a>
+</body>
+</html>
