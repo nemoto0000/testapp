@@ -10,7 +10,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110526075043) do
+ActiveRecord::Schema.define(:version => 20110527072555) do
+
+  create_table "likes", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "uid"
+    t.integer  "meetinguid"
+    t.boolean  "judge"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "uid"
@@ -32,6 +40,8 @@ ActiveRecord::Schema.define(:version => 20110526075043) do
     t.datetime "updated_at"
     t.string   "email"
     t.integer  "age"
+    t.integer  "toage"
+    t.integer  "fromage"
   end
 
 end

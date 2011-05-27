@@ -30,7 +30,6 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
-    #@user = User.find(params[:id])
     facebook_id = session[:facebook_id]
     session[:facebook_id] = facebook_id
     @user = User.find(:first, :conditions => ["uid = ?", facebook_id])
@@ -40,13 +39,15 @@ class UsersController < ApplicationController
     if @user == nil then
       redirect_to :action => callback
     end
-    # 自分以外で性別も逆
-#@targets = User.where('age >= ? and age <= ?', "%#{params[:from_age]}%", "%#{params[:from_age]}%")
 
-#    code = session[:code]
-#    session[:code] = code
-#    @client.authorize(:code => code)
-#    @json = get_json(@client.me.info["id"])
+    @user.fromage = params[:from_age]||= 0
+    @user.toage = params[:to_age]||= 100
+    @user.save
+    # 自分以外で性別も逆
+    #@targets = User.where('age > ? and age < ?', "%#{params[:from_age]}%", "%#{params[:to_age]}%")
+
+    @targets = User.where('age >= ? and age <= ? and sex= ?', params[:from_age], params[:to_age], @user.meeting_sex)
+
   end
 
   # GET /users/1

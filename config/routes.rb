@@ -1,4 +1,6 @@
 Matcheese::Application.routes.draw do
+  get "likes/index"
+
   #こっち優先
   post "users/index"
   get "users/oauth"
@@ -9,4 +11,7 @@ Matcheese::Application.routes.draw do
   resources :users
   root :to => "users#oauth" #users/indexの認証は無視して直で
 
+  resources :likes
+  get "likes/index"
+  get "likes/okey"
 end

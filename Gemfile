@@ -11,4 +11,4 @@ gem 'facebook_oauth'
 
 gem 'json'
 gem 'simple-json'
-
+gem 'jquery-rails', '>= 1.0.3'

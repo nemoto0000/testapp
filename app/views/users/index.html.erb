@@ -1,20 +1,63 @@
+<%= javascript_include_tag("picchange") %>
+<%= stylesheet_link_tag 'picchange' %>
 有料版にUPDATE!!するのがおすすめです！
 <% form_tag :action => :index do %>
 年齢:
 
 <%= text_field_tag :from_age, params[:from_age] %>
-~<%= text_field_tag :end_age, params[:end_age] %>
+~<%= text_field_tag :to_age, params[:to_age] %>
 <%= submit_tag "検索" %>
 <% end %>
 
+
 <% if false %>
-
-<%=  @user.birthday_date%>
-<%=  @user.uid %>
-
-
 <% @targets.each do |target| %>
-  <%= target.name %><%= target.age %>
+<table border='1'>
+<tr><td>
+  <%= target.name %>(<%= target.age %>)
+</td>
+<td>
+  <%= get_gender(target.sex) %>
+</td>
+<td>
+  <%= image_tag target.pic_big||='', :size=>'100x100' %>
+</td>
+</tr>
+</table>
 <% end %>
 
+[ここを参考にした]
+http://www.skuare.net/test/jzindexgal.html
 <% end %>
+
+<table>
+<tr><td colspan="2">
+<!-- relevant for the tutorial - start -->
+<div id="pictures">
+<% @targets.each do |target| %>
+  <p type="hidden" class="uid"><%= target.uid %></p>
+  <p type="hidden" class="prof"><%= target.name %>(<%= get_gender(target.sex) %>, <%= target.age %>)</p>
+  <%= image_tag target.pic_big||='', :align=>'right', :size=>'300x300' %>
+<% end %>
+</div>
+<font size="5" id='prof'><%= @targets[0].name %>(<%= get_gender(@targets[0].sex) %>, <%= @targets[0].age %>)</font>
+
+</td></tr>
+<tr><td>
+
+<div class="grid_3 omega" id="na">
+  <a href="#na">ダメ</a>
+</div>
+
+</td>
+<td>
+<div class="grid_3 omega" id="ok">
+  <a href="#ok">OKEY!!!</a>
+</div>
+</td></tr>
+</table>
+<!-- relevant for the tutorial - end -->
+
+<%= button_to 'Okey!!', false, :onclick => "#{remote_function(:url => {:controller => :likes, :action => :okey})}" %>
+<%= button_to 'Okey!!', false, :onclick => "alert(i);alert(2);return false;" %>
+
