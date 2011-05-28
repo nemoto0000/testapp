@@ -40,7 +40,7 @@ http://www.skuare.net/test/jzindexgal.html
   <%= image_tag target.pic_big||='', :align=>'right', :size=>'300x300' %>
 <% end %>
 </div>
-<font size="5" id='prof'><%= @targets[0].name %>(<%= get_gender(@targets[0].sex) %>, <%= @targets[0].age %>)</font>
+<font size="5" id='prof'><%= @targets[@targets.count-1].name %>(<%= get_gender(@targets[@targets.count-1].sex) %>, <%= @targets[@targets.count-1].age %>)</font>
 
 </td></tr>
 <tr><td>
@@ -57,7 +57,6 @@ http://www.skuare.net/test/jzindexgal.html
 </td></tr>
 </table>
 <!-- relevant for the tutorial - end -->
-
-<%= button_to 'Okey!!', false, :onclick => "#{remote_function(:url => {:controller => :likes, :action => :okey})}" %>
-<%= button_to 'Okey!!', false, :onclick => "alert(i);alert(2);return false;" %>
+<%= button_to 'Okey!!', false, :onclick => "#{remote_function(:url => {:controller => :likes, :action => :okey, :value => 1})}" %>
+<%= button_to 'Okey!!', false, :onclick => "alert($('.prof')[36].innerText);return false;"  %>
 

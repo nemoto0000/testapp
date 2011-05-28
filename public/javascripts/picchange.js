@@ -3,7 +3,7 @@ $(document).ready(function() { //perform actions when DOM is ready
   var inAnimation = false; //flag for testing if we are in a animation
   var OK = 1;
   var NG = 2;
-  i = 1; //ヴューでもつかうの
+  i = 0; // for using view
   //var i = 1;
 
   $('#pictures img').each(function() { //set the initial z-index's
@@ -16,12 +16,13 @@ $(document).ready(function() { //perform actions when DOM is ready
     else inAnimation = true; //set the flag that we process a image
 
     var processZindex, direction, newZindex, inDeCrease; //change for previous or next image
-    processZindex = z; direction = '-'; newZindex = 1; inDeCrease = 1;
+    //processZindex = z; direction = '-'; newZindex = 1; inDeCrease = 1;
+    processZindex = 1; direction = ''; newZindex = z; inDeCrease = -1;
     // if(isFirst == OK)
 
-    i++; // 次の人へ
     // 表示用
     $('#prof').text($('.prof')[i].innerText);
+    i++; // 次の人へ
 
     $('#pictures img').each(function() { //process each image
       if($(this).css('z-index') == processZindex) { //if its the image we need to process
