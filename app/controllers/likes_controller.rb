@@ -8,11 +8,13 @@ class LikesController < ApplicationController
      meetings = Like.where('uid = ? and judge = true', facebook_id)
      @meetings = meetings
 #     @targets = User.where('uid = ?', facebook_id)
-
+   @a=0
   end
 
   def okey
-#    targets = Like.where(
-
+#    v = params[:value]
+    target = Like.new
+    target.meetinguid =1
+    target.save
   end
 end

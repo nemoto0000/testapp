@@ -17,7 +17,7 @@ $(document).ready(function() { //perform actions when DOM is ready
 
     var processZindex, direction, newZindex, inDeCrease; //change for previous or next image
     //processZindex = z; direction = '-'; newZindex = 1; inDeCrease = 1;
-    processZindex = 1; direction = ''; newZindex = z; inDeCrease = -1;
+    processZindex = 1; direction = '-'; newZindex = z; inDeCrease = -1;
     // if(isFirst == OK)
 
     // 表示用

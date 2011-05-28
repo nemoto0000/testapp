@@ -9,27 +9,7 @@
 <%= submit_tag "検索" %>
 <% end %>
 
-
-<% if false %>
-<% @targets.each do |target| %>
-<table border='1'>
-<tr><td>
-  <%= target.name %>(<%= target.age %>)
-</td>
-<td>
-  <%= get_gender(target.sex) %>
-</td>
-<td>
-  <%= image_tag target.pic_big||='', :size=>'100x100' %>
-</td>
-</tr>
-</table>
-<% end %>
-
-[ここを参考にした]
-http://www.skuare.net/test/jzindexgal.html
-<% end %>
-
+<% if @targets.count > 0 #結果がなければ %>
 <table>
 <tr><td colspan="2">
 <!-- relevant for the tutorial - start -->
@@ -41,22 +21,18 @@ http://www.skuare.net/test/jzindexgal.html
 <% end %>
 </div>
 <font size="5" id='prof'><%= @targets[@targets.count-1].name %>(<%= get_gender(@targets[@targets.count-1].sex) %>, <%= @targets[@targets.count-1].age %>)</font>
-
 </td></tr>
 <tr><td>
-
 <div class="grid_3 omega" id="na">
   <a href="#na">ダメ</a>
 </div>
-
 </td>
 <td>
 <div class="grid_3 omega" id="ok">
-  <a href="#ok">OKEY!!!</a>
+  <a href="#ok" onclick="#{remote_function(:url => {:controller => :likes, :action => :okey}, :with => 'ここに数字入れたい')};alert('o');return false;">OKEY!!!</a>
 </div>
 </td></tr>
 </table>
-<!-- relevant for the tutorial - end -->
-<%= button_to 'Okey!!', false, :onclick => "#{remote_function(:url => {:controller => :likes, :action => :okey, :value => 1})}" %>
-<%= button_to 'Okey!!', false, :onclick => "alert($('.prof')[36].innerText);return false;"  %>
+<% end #結果がなければ %>
 
+<!-- relevant for the tutorial - end -->
