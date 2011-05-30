@@ -30,6 +30,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.xml
   def index
+    @v = (params[:value]||=0).to_i
+
+    facebook_id = session[:facebook_id]
     facebook_id = session[:facebook_id]
     session[:facebook_id] = facebook_id
     @user = User.find(:first, :conditions => ["uid = ?", facebook_id])
@@ -48,7 +51,13 @@ class UsersController < ApplicationController
     #@targets = User.where('age > ? and age < ?', "%#{params[:from_age]}%", "%#{params[:to_age]}%")
 
     @targets = User.where('age >= ? and age <= ? and sex= ?', params[:from_age], params[:to_age], @user.meeting_sex)
-
+    if params[:value]
+      target = Like.new
+      target.uid = @user.uid
+      target.meetinguid = @targets[@v-1].uid
+      target.judge = params[:judge]
+      target.save
+    end
   end
 
   # GET /users/1

@@ -13,5 +13,4 @@ Matcheese::Application.routes.draw do
 
   resources :likes
   get "likes/index"
-  get "likes/okey"
 end

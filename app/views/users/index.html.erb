@@ -1,5 +1,3 @@
-<%= javascript_include_tag("picchange") %>
-<%= stylesheet_link_tag 'picchange' %>
 有料版にUPDATE!!するのがおすすめです！
 <% form_tag :action => :index do %>
 年齢:
@@ -7,30 +5,13 @@
 <%= text_field_tag :from_age, params[:from_age] %>
 ~<%= text_field_tag :to_age, params[:to_age] %> <%= submit_tag "検索" %> <% end %>
 
-<% if @targets.count > 0 #結果がなければ %>
-<table>
-<tr><td colspan="2">
-<!-- relevant for the tutorial - start -->
-<div id="pictures">
-<% @targets.each do |target| %>
-  <p type="hidden" class="uid"><%= target.uid %></p>
-  <p type="hidden" class="prof"><%= target.first_name %>(<%= get_gender(target.sex) %>, <%= target.age %>)</p>
-  <%= image_tag target.pic_big||='', :align=>'right', :size=>'300x300' %>
-<% end %>
-</div>
-<font size="5" id='prof'><%= @targets[@targets.count-1].first_name %>(<%= get_gender(@targets[@targets.count-1].sex) %>, <%= @targets[@targets.count-1].age %>)</font>
-</td></tr>
-<tr><td>
-<div class="grid_3 omega" id="na">
-  <a href="#na">ダメ</a>
-</div>
-</td>
-<td>
-<div class="grid_3 omega" id="ok">
-  <a href="#ok" onclick="#{remote_function(:url => {:controller => :likes, :action => :okey}, :with => 'ここに数字入れたい')};alert('o');return false;">OKEY!!!</a>
-</div>
-</td></tr>
-</table>
+<% if @targets.count > 0 # 結果があるときのみ %>
+  <font size="5" id='prof'><%= @targets[@v].first_name %>(<%= get_gender(@targets[@v].sex) %>, <%= @targets[@v].age %>)</font>
+  NOW:<%= image_tag @targets[@v].pic_big, :size => '250x250' %>
+  <% if @v+1 < @targets.count # 次があるときのみ %>
+    NEXT:<%= image_tag @targets[@v+1].pic_big, :size => '100x100' %>
+    <br /> <%= link_to "LIKE", {:action => "index", :value => @v+=1, :judge => true} %> <%= link_to "SKIP", :action=> :index, :value=> @v+=1, :judge => false %>
+  <% end %>
 <% end #結果がなければ %>
 
 <!-- relevant for the tutorial - end -->

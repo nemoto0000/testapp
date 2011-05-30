@@ -5,16 +5,11 @@ class LikesController < ApplicationController
     @user = User.find(:first, :conditions => ["uid = ?", facebook_id])
     @client = session[:client]
 
-     meetings = Like.where('uid = ? and judge = true', facebook_id)
-     @meetings = meetings
-#     @targets = User.where('uid = ?', facebook_id)
-   @a=0
-  end
-
-  def okey
-#    v = params[:value]
-    target = Like.new
-    target.meetinguid =1
-    target.save
+    meetings = Like.where("uid = ? and judge = 't'", facebook_id)
+    uids = []
+    for meeting in meetings
+      uids<<meeting['meetinguid']
+    end
+    @meetings = User.find(:all, :conditions => ["uid in (?)", uids])
   end
 end

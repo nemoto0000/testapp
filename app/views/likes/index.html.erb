@@ -1,5 +1,8 @@
-<% if true %>
-まだ結果がありません
+<% if @meetings.count > 0 %>
+  <% for meeting in  @meetings %>
+    <font size="5" id='prof'><%= meeting.first_name %>(<%= get_gender(meeting.sex) %>, <%= meeting.age %>)</font>
+    <%= image_tag meeting.pic_big, :size => '250x250' %><br />
+  <% end %>
 <% else %>
+まだ結果がありません
 <% end %>
-<%= @meetings %>
