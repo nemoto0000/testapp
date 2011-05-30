@@ -31,6 +31,7 @@ class ApplicationController < ActionController::Base
     # jsonで取れるデータはJSON
     user.uid = json['uid']
     user.name = json['name']
+    user.first_name = client.me.info['first_name']
     user.email = client.me.info['email']
     user.pic_big = json['pic_big']
     user.religion = json['religion'] #とれない？

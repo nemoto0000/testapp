@@ -5,9 +5,7 @@
 年齢:
 
 <%= text_field_tag :from_age, params[:from_age] %>
-~<%= text_field_tag :to_age, params[:to_age] %>
-<%= submit_tag "検索" %>
-<% end %>
+~<%= text_field_tag :to_age, params[:to_age] %> <%= submit_tag "検索" %> <% end %>
 
 <% if @targets.count > 0 #結果がなければ %>
 <table>
@@ -16,11 +14,11 @@
 <div id="pictures">
 <% @targets.each do |target| %>
   <p type="hidden" class="uid"><%= target.uid %></p>
-  <p type="hidden" class="prof"><%= target.name %>(<%= get_gender(target.sex) %>, <%= target.age %>)</p>
+  <p type="hidden" class="prof"><%= target.first_name %>(<%= get_gender(target.sex) %>, <%= target.age %>)</p>
   <%= image_tag target.pic_big||='', :align=>'right', :size=>'300x300' %>
 <% end %>
 </div>
-<font size="5" id='prof'><%= @targets[@targets.count-1].name %>(<%= get_gender(@targets[@targets.count-1].sex) %>, <%= @targets[@targets.count-1].age %>)</font>
+<font size="5" id='prof'><%= @targets[@targets.count-1].first_name %>(<%= get_gender(@targets[@targets.count-1].sex) %>, <%= @targets[@targets.count-1].age %>)</font>
 </td></tr>
 <tr><td>
 <div class="grid_3 omega" id="na">
