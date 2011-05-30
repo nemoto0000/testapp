@@ -23,7 +23,7 @@ class UsersController < ApplicationController
       @client.authorize(:code => params[:code])
       facebook_id = @client.me.info["id"]
       @user = update_facebook(facebook_id, @client)
-      session[:facebook_id] = @user.uid
+      session[:facebook_id] = @user.uid||=facebook_id
     end
   end
 
@@ -33,15 +33,16 @@ class UsersController < ApplicationController
     facebook_id = session[:facebook_id]
     session[:facebook_id] = facebook_id
     @user = User.find(:first, :conditions => ["uid = ?", facebook_id])
-    @client = session[:client]
 
     # 存在してないのに来てたらcallback飛ばす
     if @user == nil then
       redirect_to :action => callback
     end
 
-    @user.fromage = params[:from_age]||= 0
-    @user.toage = params[:to_age]||= 100
+    @client = session[:client]
+
+    @user.fromage = params[:from_age]||=@user.fromage||=0
+    @user.toage = params[:to_age]||=@user.toage||=100
     @user.save
     # 自分以外で性別も逆
     #@targets = User.where('age > ? and age < ?', "%#{params[:from_age]}%", "%#{params[:to_age]}%")

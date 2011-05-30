@@ -32,13 +32,13 @@ class ApplicationController < ActionController::Base
     user.uid = json['uid']
     user.name = json['name']
     user.email = client.me.info['email']
-    #年齢計算
-    age = (Time.now.strftime("%Y%m%d").to_i-Date.parse(user.birthday).strftime("%Y%m%d").to_i)/10000
-    user.age = age
     user.pic_big = json['pic_big']
     user.religion = json['religion'] #とれない？
     user.birthday = client.me.info['birthday'] # GraphAPI
     user.birthday_date = json['birthday_date'] #とれない？
+    #年齢計算
+    age = (Time.now.strftime("%Y%m%d").to_i-Date.parse(user.birthday).strftime("%Y%m%d").to_i)/10000
+    user.age = age
     user.sex = json['sex']
     user.meeting_sex = json['meeting_sex']||=(user.sex=='male')?'female':'male' #とれないので勝手に男女逆転
     user.meeting_for = json['meeting_for'] #とれない？
