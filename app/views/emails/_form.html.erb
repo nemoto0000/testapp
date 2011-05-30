@@ -13,9 +13,15 @@
 
   <%= f.hidden_field :meetinguid, :value => @meetinguid %>
 
-  <div class="field">メッセージ選択
+  <div class="field">名前:
+    <%= @meetinguid %>
+  </div>
+  <div class="field">写真:
+  </div>
+  <div class="field">メッセージ選択:
     <%= select(:email, :message, Email.message_choices) %>
   </div>
+<br />
 
   <div class="actions">
     <%= f.submit '送信' %>

@@ -1,6 +1,6 @@
 class EmailsController < ApplicationController
   before_filter :login_required
-
+  layout "iframe", :only => :new #newにだけレイアウトを使う
   # GET /emails
   # GET /emails.xml
   def index
@@ -33,7 +33,8 @@ class EmailsController < ApplicationController
   # GET /emails/new.xml
   def new
     @email = Email.new
-    @meetinguid = params[:meetinguid]
+    @meeting = User.find_by_uid(@meetinguid)
+    @meetinguid = params#[:controller] #params[:meetinguid]
 
     respond_to do |format|
       format.html # new.html.erb
