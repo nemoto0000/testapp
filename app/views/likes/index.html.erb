@@ -1,6 +1,7 @@
 <% if @meetings.count > 0 %>
   <% for meeting in  @meetings %>
     <font size="5" id='prof'><%= meeting.first_name %>(<%= get_gender(meeting.sex) %>, <%= meeting.age %>)</font>
+    (<%= link_to "CANCEL", {:action => "index", :cancel => meeting.uid} %>)
     <%= image_tag meeting.pic_big, :size => '250x250' %><br />
   <% end %>
 <% else %>
