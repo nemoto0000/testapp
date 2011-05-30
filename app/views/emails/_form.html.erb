@@ -1,0 +1,23 @@
+<%= form_for(@email) do |f| %>
+  <% if @email.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@email.errors.count, "error") %> prohibited this email from being saved:</h2>
+
+      <ul>
+      <% @email.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.hidden_field :meetinguid, :value => @meetinguid %>
+
+  <div class="field">メッセージ選択
+    <%= select(:email, :message, Email.message_choices) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit '送信' %>
+  </div>
+<% end %>

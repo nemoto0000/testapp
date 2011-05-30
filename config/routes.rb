@@ -1,4 +1,6 @@
 Matcheese::Application.routes.draw do
+  resources :emails
+
   get "likes/index"
 
   #こっち優先

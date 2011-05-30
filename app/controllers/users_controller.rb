@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :login_required
+
   def facebook_login
      client = FacebookOAuth::Client.new(
        :application_id     => CONSUMER_KEY,
@@ -31,11 +33,6 @@ class UsersController < ApplicationController
   # GET /users.xml
   def index
     @v = (params[:value]||=0).to_i
-
-    facebook_id = session[:facebook_id]
-    facebook_id = session[:facebook_id]
-    session[:facebook_id] = facebook_id
-    @user = User.find(:first, :conditions => ["uid = ?", facebook_id])
 
     # 存在してないのに来てたらcallback飛ばす
     if @user == nil then

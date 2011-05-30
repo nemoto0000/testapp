@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>名前:</b>
+  <%= (if @meeting!=nil then @meeting.name else '不明' end) %>
+</p>
+<p>
+  <b>写真:</b>
+  <%= image_tag (if @meeting!=nil then @meeting.pic_big else '' end) %>
+</p>
+
+<p>
+  <b>メッセージ:</b>
+  <%= @email.message %>
+</p>
+
+
+<%= link_to 'Edit', edit_email_path(@email) %> |
+<%= link_to 'Back', emails_path %>

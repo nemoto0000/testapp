@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
   FACEBOOK_FQL = "https://api.facebook.com/method/fql.query?query="
   FACEBOOK_SCOPE = {:scope => 'email, user_birthday, read_stream'}
 
+  def login_required
+    @facebook_id = session[:facebook_id]
+    session[:facebook_id] = @facebook_id
+    @user = User.find(:first, :conditions => ["uid = ?", @facebook_id])
+  end
+
   def get_json(facebook_id)
     require 'open-uri'
     fql = "SELECT%20uid,%20name,%20pic_big,%20religion,%20birthday,%20birthday_date,%20sex,%20meeting_sex,%20meeting_for,%20tv,%20movies,%20books,%20online_presence,%20username,%20website%20FROM%20user%20WHERE%20uid=" + facebook_id +"&format=json"

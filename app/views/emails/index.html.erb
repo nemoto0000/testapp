@@ -1,0 +1,27 @@
+<h1>メール一覧</h1>
+<%= link_to '送信', :action => :index, :type => 1 %>| <%= link_to '受信', :action => :index, :type => 2 %>
+<br />
+------------------------------------------------------------------------------------------------------------------
+<br />
+
+<table>
+  <tr>
+    <th>相手</th>
+    <th>メッセージ</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% if @emails.count > 0 %>
+<% @emails.each do |email| %>
+  <tr>
+    <td><%= image_tag (if user = User.find_by_uid(email.meetinguid)!=nil then user.pic_big else '' end) %></td>
+    <td><%= email.message %></td>
+    <td><%= link_to '開く', email %></td>
+    <td><%= link_to '削除', email, :confirm => '消しますか?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+まだメールはありません
+<% end %>

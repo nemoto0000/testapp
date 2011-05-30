@@ -1,7 +1,12 @@
+<link rel="stylesheet" href="thickbox.css" type="text/css" media="screen" />
+<%= javascript_include_tag 'thickbox' %>
+
 <% if @meetings.count > 0 %>
   <% for meeting in  @meetings %>
     <font size="5" id='prof'><%= meeting.first_name %>(<%= get_gender(meeting.sex) %>, <%= meeting.age %>)</font>
-    (<%= link_to "CANCEL", {:action => "index", :cancel => meeting.uid} %>)
+    [<%= link_to "メールする", {:controller => :emails, :action => :new, :meetinguid => meeting.uid} %>]
+    [<%= link_to "メールする【まだバグ】", {:controller => :emails, :action => :new, :meetinguid => meeting.uid, :keepThis=>true, :TB_iframe=>:true, :height=>250, :width=>400}, :class=>"thickbox" %>]
+    (<%= link_to "CANCEL", {:action => :index, :cancel => meeting.uid} %>)
     <%= image_tag meeting.pic_big, :size => '250x250' %><br />
   <% end %>
 <% else %>
