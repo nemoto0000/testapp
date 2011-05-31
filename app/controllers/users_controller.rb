@@ -10,8 +10,8 @@ class UsersController < ApplicationController
     client
   end
 
-  def oauth
-    client = facebook_login # よぶ↑
+  def oauth # 最初に呼ばれるべき
+    client = facebook_login # よぶ
     redirect_to client.authorize_url(FACEBOOK_SCOPE) #eメールも
   end
 
@@ -36,6 +36,7 @@ class UsersController < ApplicationController
 
     # 存在してないのに来てたらcallback飛ばす
     if @user == nil then
+    #if @user == nil then
       redirect_to :action => callback
     end
 
