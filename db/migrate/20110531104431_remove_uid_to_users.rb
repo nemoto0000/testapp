@@ -4,6 +4,6 @@ class RemoveUidToUsers < ActiveRecord::Migration
   end
 
   def self.down
-    add_column :users, :uid, :string
+    add_column :users, :uid, :integer
   end
 end
