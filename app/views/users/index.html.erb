@@ -1,5 +1,5 @@
 有料版にUPDATE!!するのがおすすめです！
-<% form_tag :action => :index do %>
+<%= form_tag :action => :index do %>
 年齢:
 
 <%= text_field_tag :from_age, params[:from_age] %>
@@ -8,9 +8,9 @@
 <% if @targets.count > 0 # 結果があるときのみ %>
   <font size="5" id='prof'><%= @targets[@v].first_name %>(<%= get_gender(@targets[@v].sex) %>, <%= @targets[@v].age %>)</font>
   NOW:<%= image_tag @targets[@v].pic_big, :size => '250x250' %>
-  <% if @v+1 < @targets.count # 次があるときのみ %>
+  <% if @v.to_i+1 < @targets.count # 次があるときのみ %>
     NEXT:<%= image_tag @targets[@v+1].pic_big, :size => '100x100' %>
-    <br /><%= link_to "LIKE", {:action => "index", :value => @v+1, :judge => true} %> <%= link_to "SKIP", :action=> :index, :value=> @v+1, :judge => false %>
+    <br /><%= link_to "LIKE", {:action => "index", :value => @v+=1, :judge => 'true'} %> <%= link_to "SKIP", :action=> :index, :value=> @v, :judge => 'false' %>
   <% end %>
 <% end #結果がなければ %>
 

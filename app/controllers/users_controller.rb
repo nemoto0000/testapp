@@ -52,7 +52,7 @@ class UsersController < ApplicationController
     if params[:value] != 0
       target = Like.new
       target.uid = @user.uid
-      target.meetinguid = @targets[@v-1].uid
+      target.meetinguid = (@targets[@v-1].uid).to_i
       target.judge = params[:judge]
       target.save
     end
