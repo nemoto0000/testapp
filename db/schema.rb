@@ -13,19 +13,19 @@
 ActiveRecord::Schema.define(:version => 20110532014434) do
 
   create_table "emails", :force => true do |t|
-    t.integer  "uid"
-    t.integer  "meetinguid"
     t.string   "message"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "uid"
+    t.integer  "meetinguid"
   end
 
   create_table "likes", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "judge"
     t.integer  "uid"
     t.integer  "meetinguid"
-    t.boolean  "judge"
   end
 
   create_table "users", :force => true do |t|
