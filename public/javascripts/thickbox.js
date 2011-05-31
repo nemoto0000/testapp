@@ -29,6 +29,7 @@ function tb_init(domChunk){
 }
 
 function tb_show(caption, url, imageGroup) {//function called when the user clicks on a thickbox link
+
 	try {
 		if (typeof document.body.style.maxHeight === "undefined") {//if IE 6
 			$("body","html").css({height: "100%", width: "100%"});
@@ -123,7 +124,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			// End Resizing
 			TB_WIDTH = imageWidth + 30;
 			TB_HEIGHT = imageHeight + 60;
-			$("#TB_window").append("<a href='' id='TB_ImageOff' title='Close'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + TB_imageCount + TB_PrevHTML + TB_NextHTML + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='Close'>閉じる</a> or [Esc]キー</div>"); 		
+			$("#TB_window").append("<a href='' id='TB_ImageOff' title='Close'><img id='TB_Image' src='"+url+"' width='"+imageWidth+"' height='"+imageHeight+"' alt='"+caption+"'/></a>" + "<div id='TB_caption'>"+caption+"<div id='TB_secondLine'>" + TB_imageCount + TB_PrevHTML + TB_NextHTML + "</div></div><div id='TB_closeWindow'><a href='#' id='TB_closeWindowButton' title='Close'>閉じる</a> or [Esc]キー</div>"); 
 			
 			$("#TB_closeWindowButton").click(tb_remove);
 			
@@ -181,7 +182,7 @@ function tb_show(caption, url, imageGroup) {//function called when the user clic
 			
 			var queryString = url.replace(/^[^\?]+\??/,'');
 			var params = tb_parseQuery( queryString );
-			alert(params['meetinguid']);
+//			alert(params['meetinguid']);
 
 			
 			TB_WIDTH = (params['width']*1) + 30 || 630; //defaults to 630 if no paramaters were added to URL

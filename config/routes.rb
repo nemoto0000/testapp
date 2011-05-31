@@ -1,11 +1,10 @@
 Matcheese::Application.routes.draw do
   resources :emails
 
-  get "likes/index"
-
   #こっち優先
-  post "users/index"
+  get "users/index"
   get "users/oauth"
+  post  "users/oauth"
   get "users/callback"
   match 'users/:id', :to => "users#index", :as => "index"
 
@@ -14,5 +13,5 @@ Matcheese::Application.routes.draw do
   root :to => "users#oauth" #users/indexの認証は無視して直で
 
   resources :likes
-  get "likes/index"
+#  get "likes/index"
 end

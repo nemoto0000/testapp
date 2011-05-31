@@ -10,7 +10,7 @@
   NOW:<%= image_tag @targets[@v].pic_big, :size => '250x250' %>
   <% if @v+1 < @targets.count # 次があるときのみ %>
     NEXT:<%= image_tag @targets[@v+1].pic_big, :size => '100x100' %>
-    <br /> <%= link_to "LIKE", {:action => "index", :value => @v+=1, :judge => true} %> <%= link_to "SKIP", :action=> :index, :value=> @v+=1, :judge => false %>
+    <br /><%= link_to "LIKE", {:action => "index", :value => @v+=1, :judge => true} %> <%= link_to "SKIP", :action=> :index, :value=> @v+=1, :judge => false %>
   <% end %>
 <% end #結果がなければ %>
 

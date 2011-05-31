@@ -15,7 +15,13 @@
 <% if @emails.count > 0 %>
 <% @emails.each do |email| %>
   <tr>
-    <td><%= image_tag ((User.find_by_uid(email.meetinguid)!=nil) ? User.find_by_uid(email.meetinguid).pic_big : '') %></td>
+    <td>
+    <% if User.find_by_uid(email.meetinguid) != nil %>
+    <%= image_tag User.find_by_uid(email.meetinguid).pic_big||='' %>
+    <% else %>
+    不明
+    <% end %>
+    </td>
     <td><%= email.message %></td>
     <td><%= link_to '開く', email %></td>
     <td><%= link_to '削除', email, :confirm => '消しますか?', :method => :delete %></td>

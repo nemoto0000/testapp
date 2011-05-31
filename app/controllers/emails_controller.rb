@@ -1,6 +1,14 @@
 class EmailsController < ApplicationController
   before_filter :login_required
-  layout "iframe", :only => :new #newにだけレイアウトを使う
+
+#newにだけレイアウトを使う
+  layout "iframe", :only => [:new]
+  # ↑がRails3系のバグなのか動かないので応急処置
+  layout :choose_layout
+  def choose_layout
+    (action_name == 'new') ? 'iframe' : 'application'
+  end
+
   # GET /emails
   # GET /emails.xml
   def index
@@ -33,8 +41,9 @@ class EmailsController < ApplicationController
   # GET /emails/new.xml
   def new
     @email = Email.new
-    @meeting = User.find_by_uid(@meetinguid)
-    @meetinguid = params#[:controller] #params[:meetinguid]
+    @meeting = User.find_by_uid(params[:meetinguid])
+    @meetinguid = params#[:controller]
+    @meetinguid = params[:meetinguid]
 
     respond_to do |format|
       format.html # new.html.erb

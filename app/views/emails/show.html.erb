@@ -2,11 +2,19 @@
 
 <p>
   <b>名前:</b>
-  <%= (if @meeting!=nil then @meeting.name else '不明' end) %>
+    <% if @meeting != nil %>
+    <%= @meeting.name == nil ? '不明' : @meeting.name  %>
+    <% else %>
+    不明
+    <% end %>
 </p>
 <p>
   <b>写真:</b>
-  <%= image_tag (if @meeting!=nil then @meeting.pic_big else '' end) %>
+    <% if @meeting != nil %>
+    <%= @meeting.pic_big == nil ? '不明' : (image_tag @meeting.pic_big) %>
+    <% else %>
+    不明
+    <% end %>
 </p>
 
 <p>

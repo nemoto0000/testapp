@@ -48,7 +48,7 @@ class UsersController < ApplicationController
     #@targets = User.where('age > ? and age < ?', "%#{params[:from_age]}%", "%#{params[:to_age]}%")
 
     @targets = User.where('age >= ? and age <= ? and sex= ?', params[:from_age], params[:to_age], @user.meeting_sex)
-    if params[:value]
+    if params[:value] != 0
       target = Like.new
       target.uid = @user.uid
       target.meetinguid = @targets[@v-1].uid

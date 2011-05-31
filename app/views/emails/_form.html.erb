@@ -14,9 +14,10 @@
   <%= f.hidden_field :meetinguid, :value => @meetinguid %>
 
   <div class="field">名前:
-    <%= @meetinguid %>
+    <%= @meeting.first_name %>
   </div>
   <div class="field">写真:
+    <%= image_tag @meeting.pic_big||'' %>
   </div>
   <div class="field">メッセージ選択:
     <%= select(:email, :message, Email.message_choices) %>
